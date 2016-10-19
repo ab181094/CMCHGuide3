@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btmain">মূল ভবন</string>
+    <string name="btnew">নতুন ভবন</string>
+    <string name="btcafe">সিএমসি ক্যাফে</string>
+    <string name="btmedical">মেডিকেল কলেজ</string>
+    <string name="btnursing">নার্সিং কলেজ</string>
+    <string name="btdental">দন্ত বিভাগ</string>
+
+    <string-array name="buildingsArray">
+        <item>Main Buiding</item>
+        <item>New Buiding</item>
+        <item>CMC Cafe</item>
+        <item>Medical College</item>
+        <item>Nursing College</item>
+        <item>Dental Unit</item>
+    </string-array>
+
+    <string-array name="xArray">
+        <item>1665</item>
+        <item>960</item>
+        <item>1500</item>
+        <item>2275</item>
+        <item>295</item>
+        <item>1010</item>
+    </string-array>
+
+    <string-array name="yArray">
+        <item>1380</item>
+        <item>1700</item>
+        <item>260</item>
+        <item>795</item>
+        <item>975</item>
+        <item>1000</item>
+    </string-array>
+</resources>
