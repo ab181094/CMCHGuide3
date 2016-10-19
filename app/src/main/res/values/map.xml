@@ -8,12 +8,12 @@
     <string name="btdental">দন্ত বিভাগ</string>
 
     <string-array name="buildingsArray">
-        <item>Main Buiding</item>
-        <item>New Buiding</item>
-        <item>CMC Cafe</item>
-        <item>Medical College</item>
-        <item>Nursing College</item>
-        <item>Dental Unit</item>
+        <item>মূল ভবন</item>
+        <item>নতুন ভবন</item>
+        <item>সিএমসি ক্যাফে</item>
+        <item>মেডিকেল কলেজ</item>
+        <item>নার্সিং কলেজ</item>
+        <item>দন্ত বিভাগ</item>
     </string-array>
 
     <string-array name="xArray">
