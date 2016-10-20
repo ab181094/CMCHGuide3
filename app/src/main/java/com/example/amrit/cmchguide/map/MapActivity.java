@@ -21,12 +21,18 @@ public class MapActivity extends AppCompatActivity {
     String building = null;
     int x = 0, y = 0;
     Context context;
+    String mainbuilding;
+    String[] buildings;
+    TileView internaltileView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         this.context = this;
+
+        buildings = getResources().getStringArray(R.array.buildingsArray);
+        mainbuilding = buildings[0];
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -55,6 +61,15 @@ public class MapActivity extends AppCompatActivity {
         tileView.slideToAndCenter(3000, 2000);
         tileView.setScale(0.25);
 
+        linearLayout.addView(tileView);
+
+        /*tileView.addTileViewEventListener(new TileView.TileViewEventListenerImplementation(){
+            @Override
+            public void onTap(int x, int y) {
+                toastIt("The co-ordinate of this place is: " + x + ", " +y);
+            }
+        });*/
+
         if (building != null) {
             marker = new ImageView(this);
             marker.setImageResource(R.drawable.marker);
@@ -67,23 +82,34 @@ public class MapActivity extends AppCompatActivity {
             marker.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                    builder.setCancelable(true);
-                    builder.setTitle("পরিচিতি");
-                    builder.setMessage("ভবনের নামঃ " + building);
-                    builder.show();
+                    if (building.equals(mainbuilding)) {
+                        linearLayout.removeView(tileView);
+                        internaltileView = new TileView(context);
+
+                        //create tileview -- Amrit
+                        internaltileView.setSize(4000, 3000);
+
+                        //Setting the minimum parameters from the documentation -- Amrit
+                        internaltileView.addDetailLevel(1f, "tiles001/IntMap/1000/%d_%d.gif", "samples001/IntMap.jpg");
+                        internaltileView.addDetailLevel(0.5f, "tiles001/IntMap/500/%d_%d.gif", "samples001/IntMap.jpg");
+                        internaltileView.addDetailLevel(0.25f, "tiles001/IntMap/250/%d_%d.gif", "samples001/IntMap.jpg");
+                        internaltileView.addDetailLevel(0.125f, "tiles001/IntMap/125/%d_%d.gif", "samples001/IntMap.jpg");
+
+                        internaltileView.moveToAndCenter(4000, 3000);
+                        internaltileView.slideToAndCenter(4000, 3000);
+                        internaltileView.setScale(0.25);
+
+                        linearLayout.addView(internaltileView);
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setCancelable(true);
+                        builder.setTitle("পরিচিতি");
+                        builder.setMessage("ভবনের নামঃ " + building);
+                        builder.show();
+                    }
                 }
             });
         }
-
-        linearLayout.addView(tileView);
-
-        /*tileView.addTileViewEventListener(new TileView.TileViewEventListenerImplementation(){
-            @Override
-            public void onTap(int x, int y) {
-                toastIt("The co-ordinate of this place is: " + x + ", " +y);
-            }
-        });*/
     }
 
     private void toastIt(String s) {
